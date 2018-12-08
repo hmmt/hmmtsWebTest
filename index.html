@@ -1,0 +1,742 @@
+<!--
+## Introduction
+
+An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. AMP HTML is entirely built on existing web technologies. It achieves reliable performance by restricting some parts of HTML, CSS and JavaScript. To make up for those limitations AMP HTML defines a set of custom elements for rich content beyond basic HTML. This samples shows what's necessary to create a valid AMP HTML file.
+-->
+<!-- -->
+<!-- Doctype declaration is required. -->
+<!doctype html>
+<!-- This tells everyone that this is an AMP file. `<html amp>` works too. -->
+<html ⚡>
+    <!-- ## Head -->
+    <!-- -->
+
+    <head>
+        <!-- The charset definition must be the first child of the `<head>` tag. -->
+        <meta charset="utf-8">
+        <title>Project Moon</title>
+        <!-- The AMP runtime must be loaded as the second child of the `<head>` tag.-->
+        <script async src="https://cdn.ampproject.org/v0.js"></script>
+        <!--
+    AMP HTML files require a canonical link pointing to the regular HTML. If no HTML version exists, it should point to itself.
+  -->
+        <link rel="canonical"
+            href="https://ampbyexample.com/introduction/hello_world/">
+        <!--
+    AMP HTML files require a viewport declaration. It's recommended to include initial-scale=1.
+  -->
+        <meta name="viewport"
+            content="width=device-width,minimum-scale=1,initial-scale=1">
+        <!--
+    CSS must be embedded inline.
+  -->
+        <link rel="icon" sizes="192x192" href="assets/icons/favicon.png">
+
+        <style amp-custom>
+        h1 {
+            color: red;
+        }
+    </style>
+        <!--
+    The AMP boilerplate.
+  -->
+        <style amp-boilerplate>
+        body {
+            -webkit-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -moz-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            -ms-animation: -amp-start 8s steps(1, end) 0s 1 normal both;
+            animation: -amp-start 8s steps(1, end) 0s 1 normal both
+        }
+
+        @-webkit-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-moz-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-ms-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @-o-keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+
+        @keyframes -amp-start {
+            from {
+                visibility: hidden
+            }
+
+            to {
+                visibility: visible
+            }
+        }
+    </style><noscript>
+            <style amp-boilerplate>
+            body {
+                -webkit-animation: none;
+                -moz-animation: none;
+                -ms-animation: none;
+                animation: none
+            }
+        </style>
+        </noscript>
+        <style amp-custom>
+        @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+        @import url('https://fonts.googleapis.com/css?family=Cinzel');
+
+        body {
+            font-family: 'Nanum Myeongjo', -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+                "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-color: black;
+            color: white;
+        }
+
+        div#container {
+            background: url("/assets/images/background.png") ; 
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+        }
+        
+        section {
+            color: #e8bd80;
+            text-align: center;
+            transition: opacity 0.3s;
+        }
+
+        h2, span.empasis {
+        font-size: 24.5pt;
+        /* background-image: url("./assets/images/title_deco.png");
+        background-repeat: no-repeat;
+        background-position: 0 1.04em; */
+        }
+
+        p {
+        font-size: 14pt;
+        line-height: 31.5pt;
+        }
+
+        div.emp {
+        line-height: 45.5pt;
+        }
+
+        .outer {
+            display: table;
+            width: 100%;
+            height: 100%;
+        }
+            .inner {
+            display: table-cell;
+            vertical-align: middle;
+            text-align: center;
+            }
+
+            .centered {
+            position: relative;
+            display: inline-block;
+            
+            width: 50%;
+            padding: 1em;
+            }
+
+            p.longText {
+                font-size: 12pt;
+                line-height: 22pt;
+            }
+
+            p#copyright {
+                font-family: 'Cinzel', serif;
+                font-size: 14pt;
+
+            }
+
+
+    </style>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.19/jquery.scrollify.min.js"></script>
+        <script async custom-element="amp-audio"
+            src="https://cdn.ampproject.org/v0/amp-audio-0.1.js"></script>
+        <script>
+        $(function () {
+            $.scrollify({
+                section: "section",
+                easing: "easeOutExpo",
+                scrollbars: false,
+                after: function (sectionNumber) {
+                    if (sectionNumber == 19) {
+                        audio.play();
+                    }
+                }
+            });
+        });
+    </script>
+    </head>
+    <!-- ## Body -->
+    <!-- -->
+
+    <body>
+
+        <!--
+    Most HTML tags can be used directly in AMP HTML.
+  -->
+        <!--
+    Certain tags, such as the `<img>` tag, are replaced
+    with equivalent or slightly enhanced custom AMP HTML tags (see
+    [HTML Tags in the specification](https://github.com/ampproject/amphtml/blob/master/spec/amp-html-format.md)).
+
+    You can use the [ AMP Validator ](https://www.ampproject.org/docs/guides/validate.html) to check
+    if your AMP HTML file is valid AMP HTML. Simply
+    add `#development=1` to an AMP URL. Validation errors will be printed in the Javascript console.
+    You can try it with this website which is built with AMP.
+
+    Check out the [other examples](/) to learn more about AMP.
+  -->
+        <div id="container">
+            <section>
+                <div class="outer">
+                    <div class="inner">
+                        <div class="centered">
+                            <amp-img
+                                src="/assets/images/company_logo.png?static=1"
+                                alt="Company Logo" width="357px" height="370px"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <h2>피아니스트</h2>
+                                <p class="longText">
+                                    38살의 해진 정장을 입은 피아니스트.
+                                    <br />
+                                    음악의 골목, 9구 뒷골목에서 나는 하루를 시작한다.
+                                    <br />
+                                    일거리를 찾기 위해 지하주점의 문을 두들기며
+                                    <br />
+                                    정처 없이 뒷골목을 배회할 뿐이다.
+                                    <br />
+                                    허나 내 평판은 진작 이 골목에서 바닥을 기게 된 지 오래다.
+                                    <br />
+                                    '악보대로만 따라칠 뿐인 비루한 음악가.' '시시한 딴따라.',
+                                    <br />
+                                    '돈도 연줄도 없는 밑바닥 피아니스트.'
+                                    <br />
+                                    자신이 도달할 수 있는 천장은 여기까지임을
+                                    <br />
+                                    다른 누구보다 처절하게 알고 있다.
+                                    <br />
+                                    고급 레스토랑의 전속 피아니스트,
+                                    <br />
+                                    재벌들의 화려한 사교회 연주 담당
+                                    <br />
+                                    혹은 자신만의 개인 연주회.
+                                    <br />이 모든 것은 이제 나에게 그저 때를 놓친 미련일 뿐.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    온갖 매캐한 연기가 자욱한 지하의 12평짜리 싸구려 주점. <br />
+                                    꺼져가는 전구의 희미한 주홍빛이 비치는 풍경은 무덤과 닮았다.
+                                    <br />
+                                    나와 같은 하류 인생들의 무덤.
+                                    <br /> 능력 없는 해결사들과 조직의 말단 같은 쓰레기들이 모여
+                                    <br />
+                                    같잖은 위로의 말로 서로의 가치를 치켜세워주는 곳. <br />
+                                    <br />
+                                    이곳에서 나는 오직 악보만을 응시하며 하얗고 검은 건반을
+                                    두드린다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    주위를 신경 쓰지 않은 채 고개를 떨구고 연주를 하게 된 것은
+                                    <br />
+                                    나조차 기억이 흐릿한 14년 전이다.
+                                    <br />
+                                    출세의 기회를 놓친 24살에 처음으로 주점에서 연주하게 되었다.
+                                    <br />
+                                    싸구려 단란주점에서의 연주라는 것은
+                                    <br />
+                                    나에게 더 물러날 곳 없는 벼랑 끝 장소와도 같았다.
+                                    <br />내 연주가 시작되면 손님들이 하나둘씩 대화를 멈추고 나에게
+                                    고개를
+                                    <br />
+                                    돌려 연주를 감상해주며 하나의 공감대가 형성되는 것
+                                    <br />
+                                    ...까지는 바라지 않았지만,
+                                    <br />내 음악이 조금이나마 존중받고 그들에게 위로가 되기를
+                                    원했다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    하지만 주점의 풍경을 바라보고 있노라면 내 음악은 주점에
+                                    <br />
+                                    응당 있어야 할 냅킨 정도라는 것을 인정할 수밖에 없었다.
+                                    <br />
+                                    나라는 피아니스트가 아니어도 상관없다.
+                                    <br />
+                                    그저 악보를 따라 연주할 수 있는 소품 역할인 그 누구라도 있으면
+                                    되는 것이다.
+                                    <br />
+                                    테이블에 올려진 냅킨과 꽃병처럼 있어야 할 자리에
+                                    <br /> 구색을 갖추기 위해서 적당히 놓여 있을 뿐인…
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    쓸데없는 사색에 잠기는 일이 많아졌다.
+                                    <br />
+                                    도시를 감쌌던 3일간의 빛과 3일간의 어둠 그리고 하루의 정적.
+                                    <br />그 일주일을 기점으로 빈번하게 연주 중 옛 생각에 빠짐과
+                                    동시에
+                                    <br />
+                                    잊힌 것들이 떠오른다.
+                                    <br />
+                                    <br />
+                                    도시와 어울리지 않았던 따스함과 불안함 그리고 정적 속에서
+                                    <br />나 자신을 돌아볼 수 있는 여유라도 생겼던 것일까.
+                                    <br /> 생각에 잠길 수 있을 만큼의 마음은 진작에 닳고 닳아
+                                    사라졌을 터인데 말이다.
+                                    <br />
+                                    <br /> 오늘도 피아노 소리보다 손님들의 욕지거리와 수다 소리가 더
+                                    큰
+                                    <br /> 이 싸구려 주점에서 나는 손가락을 부지런히 움직이며
+                                    <br /> 지그시 눈을 감는다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p class="longText">
+                                    내가 할 수 있는 유일한 일은 오직 피아노 건반을 두드리는 것.
+                                    <br />
+                                    악보만을 따라칠 뿐인 멍청이들이 널리고 널렸었다.
+                                    <br /> 하지만 그들 대다수는 나보다 높은 곳에 있다.
+                                    <br />
+                                    어느새 보잘 것 없다고 생각하던 놈들이 후원자의 지원 덕으로
+                                    <br />
+                                    하나둘씩 위로 치고 올라가는 것을 그저 바라볼 수밖에 없었다.
+                                    <br />
+                                    부러웠을망정 분노하지는 않았다.
+                                    <br />
+                                    언젠가 자신의 재능이 인정받게 된다면
+                                    <br />
+                                    돈과 연줄로 올라간 놈들보다 높이 설 수 있을 것이라 자신했다.
+                                    <br />
+                                    <br />
+                                    하지만 그 자신감이 깨진 것은 우스우리만치 빨랐다.
+                                    <br />이 길에 본격적으로 들어선 지 얼마 안 되었을 1년 남짓한
+                                    무렵.
+                                    <br />
+                                    '재미없는 연주'라는 소리를 들었다. <br />
+                                    하나 남은 재능마저 누군가의 재능에 비하면 한없이 초라할
+                                    뿐이었다.
+                                    <br />
+                                    이것을 과연 재능이라 부를 수 있을까.
+                                    <br />
+                                    그저 남들보다 악보를 읽는 속도가 빨랐고 손이 빨랐을 뿐.
+                                    <br />
+                                    그리고 피아노의 소리를 좋아했을 뿐.
+                                    <br />
+                                    특출나지 않은 적당한 적성 따위였다는 것을 몰라왔다.
+                                    <br />
+                                    자신만이 가진 특별한 예술적 재능이라 착각해왔다.
+                                    <br />
+                                    그리고 자신에게 없던 것은 돈 많은 부모나 <br />
+                                    후원자뿐만이 아니었다는 것을 깨닫게 되었다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <h2>재능조차 없었다.</h2>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    내 연주는 나만이 할 수 있는 연주가 아니었다.
+                                    <br /> 악보에 적힌 오선지를 따라 두드릴 뿐인 누구나 할 수 있는
+                                    연주. <br /> 내가 아니어도 되는 연주. <br />
+                                    그런데도 왜 나는 건반 위에서 25년이 넘도록 <br />
+                                    손을 내려놓지 못하는가. <br />
+                                    <br />
+                                    피아노를 좋아하기 때문에 일 것이다. <br />
+                                    아무도 귀 기울여 듣지 않을, 나만을 위한 작은 연주를 <br />
+                                    지금까지 해오고 있다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p class="longText">
+                                    누군가 어깨를 거칠게 잡아당기는 힘으로 눈을 떴다.
+                                    <br /> 한 놈팡이가 술에 취해 격양된 얼굴로 나에게 무어라 말을
+                                    한다.
+                                    <br /> 같이 온 동료들을 위해서 자신이 피아노 연주를 좀
+                                    해보겠다며 <br />
+                                    자리를 비키라고. <br />내 손은 그 와중에도 멈추지 않고 건반을
+                                    두드리고 있다. <br />
+                                    곡이 끝나기 전까지는 손가락을 멈출 수 없다. <br />
+                                    엉덩이를 뗄 수 없다. <br />내 자리를 양보할 수 없다. <br />
+                                    나에게 남은 마지막 장소이다. 재능이 없음에도, 멸시받음에도
+                                    <br />
+                                    비루한 자존심으로 꿋꿋이 지켜왔던 물러설 곳 없는 나만의
+                                    자리였다. <br />
+                                    점주가 와서 일 벌이지 말라고 한다. <br />
+                                    당장 비키지 않으면 앞으로 일이 없을 것이라 <br />
+                                    큰소리로 엄포를 놓는다. <br />
+                                    의자에 앉은 채 그들을 올려다보면서도 부지런히 손가락을 놀려 가며
+                                    <br />
+                                    연주를 하고 있자니 다시 한번 깨닫게 된다. <br />
+                                    <br />내 연주는 언제나 바닥에서 흐르는 것이었다. <br />난 그저
+                                    고개만 올려다볼 뿐인 가라앉는 연주를 하고 있었다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    순간 머리가 울렸다. <br />
+                                    점주가 뺨을 내리치며 내 연주는 끝이 났다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    물에 젖은 수건을 볼에 갖다 댄 체 구석의 탁자에 앉아 <br />
+                                    무례한 놈이 피아노 앞에 앉아 있는 것을 지켜보았다. <br />
+                                    비좁은 주점 안은 여전히 쩌렁쩌렁하게
+                                    <br /> 테이블에서 저마다의 천박한 수다가 울려 퍼진다. <br />
+                                    예의라고는 모르는 녀석이 피아노 의자에 앉아 <br />
+                                    침을 튀겨가며 <br />제 친구들에게 잘난 채 하고 있다. <br />
+                                    이야기를
+                                    듣자 하니 가끔 취미로 피아노를 쳐온 모양이다. <br />
+                                    부어오른 볼을 어루만지며 나도 진작에 취미로 전향했다면 <br />
+                                    지금 보다 좀 나아졌겠느냐는 생각을 할 무렵이었다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    감미로운 선율이 흘렀다. <br />저 피아노가 과연 방금까지 자신이
+                                    사용한 싸구려 피아노가 맞나 싶었다.
+                                    <br /> 분명 자신이 연주했던 것과 같은 곡임에도 곡조가 가슴을
+                                    후벼판다.
+                                    <br /> 주점의 소리는 여전히 시끄럽지만, 자신에게만은 또렷이
+                                    들려왔다. <br />
+                                    그리고 점차 주점의 소리는 사그라들며, <br />
+                                    그곳에 아름다운 곡조만이 남는다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    눈물이 흐른다. <br />
+                                    자신의 마음을 관통하는 선율에 몸이 떨렸고
+                                    <br />
+                                    아름답고 아파서 눈물이 흘렀다.
+                                    <br /> 곡이 절정을 치달음에 따라 12평 남짓한 이 장소는 <br />
+                                    세상 그 어디에도 없는 아늑한 장소가 되어간다. <br />
+                                    이것이 진정한 재능이다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    난 순간 자리를 박차고 일어나 피아노로 향했다.
+                                    <br /> 그리고 피아노를 연주하고 있던 개자식을 있는 힘껏 자리에서
+                                    <br />
+                                    밀쳐냈다. 내 머리통을 피아노 건반 위에 미친 듯이 두드렸다.
+                                    <br />
+                                    <br />
+                                    <div class="emp">
+                                        <span class="empasis">쿵.</span>
+                                        <br /> <span class="empasis">뚝.</span>
+                                        <br />
+                                        <span class="empasis">띵띵.</span>
+                                    </div>
+                                    <br />
+                                    <br /> 피아노의 날 선 소리가 크게 울려 퍼진다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p class="longText">
+                                    내 오른쪽 눈알이 흑건에 박혀 눈에서 물이 흘러나온다. 머리를 건반
+                                    <br />
+                                    위에 비비고 갈았다. 순백의 건반이 붉게 물들어간다. 이어서 왼팔을
+                                    <br />
+                                    비틀고 꺾어 왼손을 건반에 짓뭉갰다. 입을 벌려 피아노의 모서리에
+                                    <br />
+                                    박았다. 이빨이 부러지고 뽑히며 피아노에 박힌다. <br />
+                                    온몸을 피아노에 문대고 내리치고 갈아낸다. <br /> 지금껏 피아노에서 듣지
+                                    못했던 전혀 다른
+                                    소리가 들려온다. <br /> 손님들이 내 연주를 외면한 것은 밉지 않았다. 저
+                                    <br />
+                                    새끼가 내 연주를 무례하게 멈추게 한 것은 밉지 않았다. 점주가 내
+                                    <br />
+                                    편을 들지 않은 것은 밉지않았다. 후원자 덕으로 높이 올라간
+                                    동기들이
+                                    <br />
+                                    밉지 않았다. 난 그저 피아노가 좋기에 피아노를 치며 살아가고 싶을
+                                    <br />
+                                    뿐이었다. 이 도시에서는 허락되지 않는다. 단순히 좋아한다는
+                                    <br />
+                                    마음만으로는 되지 않는 것들 투성이다. 나답게 살아갈 자유는
+                                    어디에 <br />
+                                    있는가. 왜 나는 건반에서 몸을 떼지 못하는가. 마음이 왜 <br />
+                                    멸시받아야만 하는가. 평가받아야만 하는 이 도시가 혐오스러웠다.
+                                    <br />
+                                    이름도 모를 놈이 나를 밀쳐내고 피아노 앞에 앉았을 때는 내 자리를
+                                    <br /> 빼앗겼다고 생각하지 않았다. 하지만 그 연주가 내 마음을
+                                    홀렸을 때 난 <br />
+                                    진정으로 내 자리를 빼앗겼다. 내 연주는 어째서 사람의 마음을 잡지
+                                    <br />
+                                    못하는가. 어째서 나조차 홀리지 못하는가. …모든 것이 뒤틀려있다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    정신을 차리니 주점 모두가 내 연주에 귀 기울이고 있다. <br />
+                                    나의 연주만을 들어주고 있었다.
+                                    <br />
+                                    내 피와 살점으로 범벅이 된 피아노가 너절하게 삐걱거린다. <br />
+                                    그런데도 어째서 내 몸은 그 어느 때보다 <br />
+                                    온 힘을 다해 피아노를 연주할 수 있는가? <br />
+                                    따위는 지금, 이 순간의 환희에 비하면 사소한 것이다. <br />
+                                    멈추지 않은 채 빌어먹을 내 몸뚱이를 피아노에 두드리며 연주한다.
+                                    <br />
+                                    피아노는 진작에 망가졌어야 마땅함에도 <br />
+                                    모양새를 갖춘 채 오히려 더 커져 있다. <br />
+                                    건반이 늘어가며 더 커진다.
+                                    <br />
+                                    늘어난 건반에 따라 내 팔은 늘어난다. <br />
+                                    연주를 위 한 새로운 팔이 솟아난다. <br />
+                                    음악은 더욱더 감미로우며 아름답게 울려 퍼져간다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    눈앞에 악보가 펼쳐진다. <br />
+                                    사람들이 나와 같이 찢기며 음표가 되어간다. <br />
+                                    놈팡이의 몸에서 우러나왔던 것과 같은 소리를 자아낸다. <br />
+                                    해결사들이 검을 뽑는다. <br />
+                                    하지만 이윽고 그들도 연주의 일부가 되어간다. <br />
+                                    오선지 위에서 소리가 보인다. <br />
+                                    비명소리, 살이 터지는 소리, 뼈가 부러지는 소리, 내장이 뽑히는
+                                    <br />
+                                    소리...
+                                    <br /> 분명 소음일 터인데 나로 인해 선율이 되어간다. <br />
+                                    점차 아름답게 연주되어간다. <br />
+                                    이것이야말로 내 재능이다.
+                                    <br /> 지하에 처박혀있던 나와 피아노는 하나가 되어 높은 무대로
+                                    향한다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    도시의 바닥에서 홀로 연주를 한다.
+                                    <br /> 언젠가 도시 모든 사람이 내 연주만을 들을 수 있도록 <br />
+                                    더욱더 힘차게 건반을 두들긴다.
+                                    <br /> 더이상 시덥지 않은 사색에 잠기지도 않는다. <br />
+                                    후원자든 재능 따위든 상관없다.
+                                    <br /> 내가 자아내는 선율 앞에서 모든 것이 하찮을 뿐이다. <br />
+                                    다시는 누구에게도 양보하지 않을 나만의 피아노 앞 보금자리를
+                                    <br />
+                                    지키며 나만이 연주할 수 있는 곡조를 흘린다. <br />내 연주는
+                                    바닥에서 흐르지만 더 가라앉지 않는다. <br />
+                                    <br />
+                                    이제 누가 굽어보며 연주하고 있는가… <br />
+                                    <br />
+                                    ...이제 누가 올려다보며 선율에 몸을 떨고 있는가.
+                                    <br /><br /> 난 그저 도시에서 태어난 비루한 피아니스트일 뿐이다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <p>
+                                    도시의 바닥에서 홀로 연주를 한다.
+                                    <br /> 언젠가 도시 모든 사람이 내 연주만을 들을 수 있도록 <br />
+                                    더욱더 힘차게 건반을 두들긴다.
+                                    <br /> 더이상 시덥지 않은 사색에 잠기지도 않는다. <br />
+                                    후원자든 재능 따위든 상관없다.
+                                    <br /> 내가 자아내는 선율 앞에서 모든 것이 하찮을 뿐이다. <br />
+                                    다시는 누구에게도 양보하지 않을 나만의 피아노 앞 보금자리를
+                                    <br />
+                                    지키며 나만이 연주할 수 있는 곡조를 흘린다. <br />내 연주는
+                                    바닥에서 흐르지만 더 가라앉지 않는다. <br />
+                                    <br />
+                                    이제 누가 굽어보며 연주하고 있는가… <br />
+                                    <br />
+                                    ...이제 누가 올려다보며 선율에 몸을 떨고 있는가.
+                                    <br />난 그저 도시에서 태어난 비루한 피아니스트일 뿐이다.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                유투브
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section>
+                    <div class="outer">
+                        <div class="inner">
+                            <div class="centered">
+                                <amp-img src="/assets/images/game_logo.png"
+                                    alt="Game Logo" width="345.8px"
+                                    height="345.8px"
+                                    />
+                                </div>
+                                <p id="copyright">COPYRIGHT&#169;2018, ALL
+                                    RIGHTS RESERVED BY PROJECT MOON</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </body>
+            <script>
+                var audio = new Audio('/assets/audio/bgm.mp3');
+
+            </script>
+
+        </html>
