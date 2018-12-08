@@ -108,7 +108,7 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
         </style>
         </noscript>
         <style amp-custom>
-        @import url(http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+        @import url("http://fonts.googleapis.com/earlyaccess/nanummyeongjo.css");
         @import url('https://fonts.googleapis.com/css?family=Cinzel');
 
         body {
@@ -173,15 +173,33 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
             p.longText {
                 font-size: 12pt;
                 line-height: 22pt;
+                
             }
 
             p#copyright {
                 font-family: 'Cinzel', serif;
                 font-size: 14pt;
-
             }
 
+            #youtube {
+                height: 100%;
+            }
 
+            #youtube-section {
+                background-image: url("/assets/images/pattern.png");  
+                background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+                
+            }
+
+            #youtube-section > iframe {
+                position: relative;
+                top: 48px;
+                height: 90%;
+                z-index: -99;
+            }
     </style>
         <script
             src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -196,7 +214,12 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
                 easing: "easeOutExpo",
                 scrollbars: false,
                 after: function (sectionNumber) {
-                    if (sectionNumber == 19) {
+                    if (sectionNumber == 17) {
+                        audio.addEventListener('ended', function () {
+                            this.currentTime = 0;
+                            this.play();
+                        }, false);
+                        
                         audio.play();
                     }
                 }
@@ -493,7 +516,7 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
                         <div class="inner">
                             <div class="centered">
                                 <p>
-                                    물에 젖은 수건을 볼에 갖다 댄 체 구석의 탁자에 앉아 <br />
+                                    물에 젖은 수건을 볼에 갖다 댄 채 구석의 탁자에 앉아 <br />
                                     무례한 놈이 피아노 앞에 앉아 있는 것을 지켜보았다. <br />
                                     비좁은 주점 안은 여전히 쩌렁쩌렁하게
                                     <br /> 테이블에서 저마다의 천박한 수다가 울려 퍼진다. <br />
@@ -663,7 +686,7 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
                     <div class="outer">
                         <div class="inner">
                             <div class="centered">
-                                <p>
+                                <p class="longText">
                                     도시의 바닥에서 홀로 연주를 한다.
                                     <br /> 언젠가 도시 모든 사람이 내 연주만을 들을 수 있도록 <br />
                                     더욱더 힘차게 건반을 두들긴다.
@@ -684,39 +707,13 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
                         </div>
                     </div>
                 </section>
-                <section>
-                    <div class="outer">
-                        <div class="inner">
-                            <div class="centered">
-                                <p>
-                                    도시의 바닥에서 홀로 연주를 한다.
-                                    <br /> 언젠가 도시 모든 사람이 내 연주만을 들을 수 있도록 <br />
-                                    더욱더 힘차게 건반을 두들긴다.
-                                    <br /> 더이상 시덥지 않은 사색에 잠기지도 않는다. <br />
-                                    후원자든 재능 따위든 상관없다.
-                                    <br /> 내가 자아내는 선율 앞에서 모든 것이 하찮을 뿐이다. <br />
-                                    다시는 누구에게도 양보하지 않을 나만의 피아노 앞 보금자리를
-                                    <br />
-                                    지키며 나만이 연주할 수 있는 곡조를 흘린다. <br />내 연주는
-                                    바닥에서 흐르지만 더 가라앉지 않는다. <br />
-                                    <br />
-                                    이제 누가 굽어보며 연주하고 있는가… <br />
-                                    <br />
-                                    ...이제 누가 올려다보며 선율에 몸을 떨고 있는가.
-                                    <br />난 그저 도시에서 태어난 비루한 피아니스트일 뿐이다.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section>
-                    <div class="outer">
-                        <div class="inner">
-                            <div class="centered">
-                                유투브
-                            </div>
-                        </div>
-                    </div>
+
+                <section id="youtube-section">
+                    <iframe width="720px"
+                        src="https://www.youtube.com/embed/RHVKJEEU3lc?controls=0&autoplay=1&loop=1&playlist=RHVKJEEU3lc"
+                        frameborder="0" allow="accelerometer; autoplay;
+                        encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
                 </section>
                 <section>
                     <div class="outer">
@@ -727,16 +724,15 @@ An AMP HTML tutorial - learn the different building blocks of an AMP HTML file. 
                                     height="345.8px"
                                     />
                                 </div>
-                                <p id="copyright">COPYRIGHT&#169;2018, ALL
+                                <p id="copyright">COPYRIGHT&#169;2018,
+                                    ALL
                                     RIGHTS RESERVED BY PROJECT MOON</p>
                             </div>
                         </div>
-                    </div>
-                </section>
-            </body>
-            <script>
+                    </section>
+                </body>
+                <script>
                 var audio = new Audio('/assets/audio/bgm.mp3');
 
             </script>
-
-        </html>
+            </html>
